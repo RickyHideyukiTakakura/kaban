@@ -1,25 +1,34 @@
-import Modal from 'react-modal';
-import CloseIcon from '@mui/icons-material/Close';
-import { FormEvent, useState } from 'react';
-import * as S from './styles';
+import Modal from 'react-modal'
+import CloseIcon from '@mui/icons-material/Close'
+import { FormEvent, useState } from 'react'
+import * as S from './styles'
+import { useCard } from '../../hook/useCard'
 
 interface INewCardModal {
-  isOpen: boolean;
-  onRequestClose: () => void;
+  isOpen: boolean
+  onRequestClose: () => void
 }
 
 export function NewCardModal({ isOpen, onRequestClose }: INewCardModal) {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [type, setType] = useState('A fazer');
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+  const [type, setType] = useState('todo')
 
-  function handleCreateNewCard(event: FormEvent) {
-    event.preventDefault();
+  const { createCard } = useCard()
 
-    setTitle('');
-    setDescription('');
-    setType('todo');
-    onRequestClose();
+  async function handleCreateNewCard(event: FormEvent) {
+    event.preventDefault()
+
+    await createCard({
+      title,
+      description,
+      type
+    })
+
+    setTitle('')
+    setDescription('')
+    setType('todo')
+    onRequestClose()
   }
 
   return (
@@ -56,7 +65,7 @@ export function NewCardModal({ isOpen, onRequestClose }: INewCardModal) {
           <S.RadioBox
             type="button"
             onClick={() => {
-              setType('todo');
+              setType('todo')
             }}
             isActive={type === 'todo'}
             activeColor="red"
@@ -66,7 +75,7 @@ export function NewCardModal({ isOpen, onRequestClose }: INewCardModal) {
           <S.RadioBox
             type="button"
             onClick={() => {
-              setType('doing');
+              setType('doing')
             }}
             isActive={type === 'doing'}
             activeColor="yellow"
@@ -76,9 +85,9 @@ export function NewCardModal({ isOpen, onRequestClose }: INewCardModal) {
           <S.RadioBox
             type="button"
             onClick={() => {
-              setType('concluded');
+              setType('done')
             }}
-            isActive={type === 'concluded'}
+            isActive={type === 'done'}
             activeColor="green"
           >
             <span>Concluído</span>
@@ -88,5 +97,5 @@ export function NewCardModal({ isOpen, onRequestClose }: INewCardModal) {
         <button type="submit">Adicionar</button>
       </S.Form>
     </Modal>
-  );
+  )
 }

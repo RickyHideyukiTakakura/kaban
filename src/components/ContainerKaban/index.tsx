@@ -1,35 +1,53 @@
-import { Card } from '../Card';
-import { Kaban, KabanHeader } from '../Kaban';
-import * as S from './styles';
+import { useCard } from '../../hook/useCard'
+import { Card } from '../Card'
+import { Kaban, KabanHeader } from '../Kaban'
+import * as S from './styles'
 
 export function ContainerKaban() {
+  const { cards } = useCard()
+
   return (
     <S.ContainerKaban>
       <Kaban>
         <KabanHeader>A fazer</KabanHeader>
-        <Card
-          title="#boraCodar um Kanban 🧑‍💻"
-          description="Novo desafio do #boraCodar da Rocketseat, onde é proposto construir um quadro de Kanban."
-        />
-        <Card
-          title="Manter a ofensiva 🔥"
-          description="Manter minha atividade na plataforma da Rocketseat para não perder a ofensiva"
-        />
+        {cards
+          .filter((card) => card.type === 'todo')
+          .map((card) => (
+            <Card
+              key={card.title}
+              title={card.title}
+              description={card.description}
+              type={card.type}
+            />
+          ))}
       </Kaban>
+
       <Kaban>
         <KabanHeader>Fazendo</KabanHeader>
-        <Card
-          title="Conferir o novo desafio 🚀 "
-          description="Conferir o novo projeto do #boraCodar para fazê-lo da melhor maneira possível"
-        />
+        {cards
+          .filter((card) => card.type === 'doing')
+          .map((card) => (
+            <Card
+              key={card.title}
+              title={card.title}
+              description={card.description}
+              type={card.type}
+            />
+          ))}
       </Kaban>
       <Kaban>
         <KabanHeader>Feito</KabanHeader>
-        <Card
-          title="#boraCodar uma página de login 🧑‍💻"
-          description="Novo desafio do #boraCodar da Rocketseat, onde é proposto construir um quadro de Kanban."
-        />
+        {cards
+          .filter((card) => card.type === 'done')
+          .map((card) => (
+            <Card
+              key={card.title}
+              title={card.title}
+              description={card.description}
+              type={card.type}
+            />
+          ))}
       </Kaban>
     </S.ContainerKaban>
-  );
+  )
 }

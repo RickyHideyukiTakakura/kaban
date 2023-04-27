@@ -1,8 +1,9 @@
-import * as S from './styles';
+import * as S from './styles'
 
 interface ICard {
-  title: string;
-  description: string;
+  title: string
+  description: string
+  type: string
 }
 
 export function Card(props: ICard) {
@@ -15,5 +16,5 @@ export function Card(props: ICard) {
         <li>tags</li>
       </ul>
     </S.Card>
-  );
+  )
 }

@@ -1,28 +1,29 @@
-import { Header } from '../Header';
-import { Search } from '../Search';
-import * as S from './styles';
-import FilterListIcon from '@mui/icons-material/FilterList';
-import SearchIcon from '@mui/icons-material/Search';
-import { ContainerKaban } from '../ContainerKaban';
-import Modal from 'react-modal';
-import { useState } from 'react';
-import { NewCardModal } from '../NewCardModal';
+import { Header } from '../Header'
+import { Search } from '../Search'
+import * as S from './styles'
+import FilterListIcon from '@mui/icons-material/FilterList'
+import SearchIcon from '@mui/icons-material/Search'
+import { ContainerKaban } from '../ContainerKaban'
+import Modal from 'react-modal'
+import { useState } from 'react'
+import { NewCardModal } from '../NewCardModal'
+import { CardsProvider } from '../../hook/useCard'
 
-Modal.setAppElement('#root');
+Modal.setAppElement('#root')
 
 export function Main() {
-  const [isNewCardModalOpen, setIsNewCardModalOpen] = useState(false);
+  const [isNewCardModalOpen, setIsNewCardModalOpen] = useState(false)
 
   function handleOpenNewCard() {
-    setIsNewCardModalOpen(true);
+    setIsNewCardModalOpen(true)
   }
 
   function handleCloseNewCard() {
-    setIsNewCardModalOpen(false);
+    setIsNewCardModalOpen(false)
   }
 
   return (
-    <>
+    <CardsProvider>
       <S.Main>
         <Header
           title="Meu Kaban"
@@ -42,6 +43,6 @@ export function Main() {
 
         <ContainerKaban />
       </S.Main>
-    </>
-  );
+    </CardsProvider>
+  )
 }
