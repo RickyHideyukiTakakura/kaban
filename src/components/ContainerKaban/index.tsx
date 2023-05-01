@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Card } from '../Card';
 import { Kaban, KabanBody, KabanHeader } from '../Kaban';
 import * as S from './styles';
