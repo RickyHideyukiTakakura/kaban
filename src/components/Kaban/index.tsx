@@ -11,3 +11,4 @@ export function Kaban(props: IKaban) {
 }
 
 export const KabanHeader = S.KabanHeader;
+export const KabanBody = S.KabanBody;

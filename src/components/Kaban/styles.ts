@@ -12,3 +12,9 @@ export const KabanHeader = styled.strong`
   font-size: 2rem;
   color: var(--brown-300);
 `;
+
+export const KabanBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+`;

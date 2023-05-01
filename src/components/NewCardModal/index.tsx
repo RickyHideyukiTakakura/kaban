@@ -6,20 +6,43 @@ import * as S from './styles';
 interface INewCardModal {
   isOpen: boolean;
   onRequestClose: () => void;
+  onAddCard: (newCard: ICard) => void;
 }
 
-export function NewCardModal({ isOpen, onRequestClose }: INewCardModal) {
+interface ICard {
+  title: string;
+  description: string;
+  tag: string;
+  type: string;
+}
+
+export function NewCardModal({
+  isOpen,
+  onRequestClose,
+  onAddCard
+}: INewCardModal) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [type, setType] = useState('A fazer');
+  const [tag, setTag] = useState('');
+  const [type, setType] = useState('todo');
 
   function handleCreateNewCard(event: FormEvent) {
     event.preventDefault();
 
+    const newCard = {
+      title,
+      description,
+      tag,
+      type
+    };
+
     setTitle('');
     setDescription('');
+    setTag('');
     setType('todo');
     onRequestClose();
+
+    onAddCard(newCard);
   }
 
   return (
@@ -52,6 +75,12 @@ export function NewCardModal({ isOpen, onRequestClose }: INewCardModal) {
           onChange={(event) => setDescription(event.target.value)}
         />
 
+        <input
+          placeholder="Tags"
+          value={tag}
+          onChange={(event) => setTag(event.target.value)}
+        />
+
         <S.ContainerRadioButton>
           <S.RadioBox
             type="button"
@@ -76,9 +105,9 @@ export function NewCardModal({ isOpen, onRequestClose }: INewCardModal) {
           <S.RadioBox
             type="button"
             onClick={() => {
-              setType('concluded');
+              setType('done');
             }}
-            isActive={type === 'concluded'}
+            isActive={type === 'done'}
             activeColor="green"
           >
             <span>Concluído</span>

@@ -1,34 +1,67 @@
+import { useState } from 'react';
 import { Card } from '../Card';
-import { Kaban, KabanHeader } from '../Kaban';
+import { Kaban, KabanBody, KabanHeader } from '../Kaban';
 import * as S from './styles';
 
-export function ContainerKaban() {
+interface ICard {
+  title: string;
+  description: string;
+  tag: string;
+  type: string;
+}
+
+interface INewCard {
+  cards: ICard[];
+}
+
+export function ContainerKaban({ cards }: INewCard) {
+  const todosCards = cards.filter((card) => card.type === 'todo');
+  const doingCards = cards.filter((card) => card.type === 'doing');
+  const doneCards = cards.filter((card) => card.type === 'done');
+
   return (
     <S.ContainerKaban>
       <Kaban>
         <KabanHeader>A fazer</KabanHeader>
-        <Card
-          title="#boraCodar um Kanban 🧑‍💻"
-          description="Novo desafio do #boraCodar da Rocketseat, onde é proposto construir um quadro de Kanban."
-        />
-        <Card
-          title="Manter a ofensiva 🔥"
-          description="Manter minha atividade na plataforma da Rocketseat para não perder a ofensiva"
-        />
+        <KabanBody>
+          {todosCards.map((card) => (
+            <Card
+              key={card.title}
+              title={card.title}
+              description={card.description}
+              tag={card.tag}
+              type={card.type}
+            />
+          ))}
+        </KabanBody>
       </Kaban>
       <Kaban>
         <KabanHeader>Fazendo</KabanHeader>
-        <Card
-          title="Conferir o novo desafio 🚀 "
-          description="Conferir o novo projeto do #boraCodar para fazê-lo da melhor maneira possível"
-        />
+        <KabanBody>
+          {doingCards.map((card) => (
+            <Card
+              key={card.title}
+              title={card.title}
+              description={card.description}
+              tag={card.tag}
+              type={card.type}
+            />
+          ))}
+        </KabanBody>
       </Kaban>
       <Kaban>
-        <KabanHeader>Feito</KabanHeader>
-        <Card
-          title="#boraCodar uma página de login 🧑‍💻"
-          description="Novo desafio do #boraCodar da Rocketseat, onde é proposto construir um quadro de Kanban."
-        />
+        <KabanHeader>Concluído</KabanHeader>
+        <KabanBody>
+          {doneCards.map((card) => (
+            <Card
+              key={card.title}
+              title={card.title}
+              description={card.description}
+              tag={card.tag}
+              type={card.type}
+            />
+          ))}
+        </KabanBody>
       </Kaban>
     </S.ContainerKaban>
   );

@@ -7,7 +7,7 @@ export const Header = styled.div`
 
   & > div {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     gap: 1.2rem;
 
     h1 {
@@ -18,6 +18,7 @@ export const Header = styled.div`
 
     button {
       border: none;
+      padding: 0;
       background: transparent;
     }
 

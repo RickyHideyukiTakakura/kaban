@@ -3,6 +3,8 @@ import * as S from './styles';
 interface ICard {
   title: string;
   description: string;
+  tag: string;
+  type: string;
 }
 
 export function Card(props: ICard) {

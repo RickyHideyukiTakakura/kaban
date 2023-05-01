@@ -10,8 +10,16 @@ import { NewCardModal } from '../NewCardModal';
 
 Modal.setAppElement('#root');
 
+interface ICard {
+  title: string;
+  description: string;
+  tag: string;
+  type: string;
+}
+
 export function Main() {
   const [isNewCardModalOpen, setIsNewCardModalOpen] = useState(false);
+  const [cards, setCards] = useState<ICard[]>([]);
 
   function handleOpenNewCard() {
     setIsNewCardModalOpen(true);
@@ -19,6 +27,10 @@ export function Main() {
 
   function handleCloseNewCard() {
     setIsNewCardModalOpen(false);
+  }
+
+  function handleAddCard(newCard: ICard) {
+    setCards((prevState) => [...prevState, newCard]);
   }
 
   return (
@@ -38,9 +50,10 @@ export function Main() {
         <NewCardModal
           isOpen={isNewCardModalOpen}
           onRequestClose={handleCloseNewCard}
+          onAddCard={handleAddCard}
         />
 
-        <ContainerKaban />
+        <ContainerKaban cards={cards} />
       </S.Main>
     </>
   );
