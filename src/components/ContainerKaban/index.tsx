@@ -35,6 +35,7 @@ export function ContainerKaban({ cards }: INewCard) {
           ))}
         </KabanBody>
       </Kaban>
+
       <Kaban>
         <KabanHeader>Fazendo</KabanHeader>
         <KabanBody>

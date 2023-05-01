@@ -1,15 +1,15 @@
-import React from 'react';
-import * as S from './styles';
+import React from 'react'
+import * as S from './styles'
 
 interface ISearch {
-  iconFilter: React.ReactNode;
-  iconSearch: React.ReactNode;
+  iconFilter: React.ReactNode
+  iconSearch: React.ReactNode
 }
 
 export function Search(props: ISearch) {
   return (
     <S.Search>
-      <button type="submit">
+      <button type="button">
         {props.iconFilter}
         Filtrar
       </button>
@@ -21,5 +21,5 @@ export function Search(props: ISearch) {
         />
       </div>
     </S.Search>
-  );
+  )
 }
