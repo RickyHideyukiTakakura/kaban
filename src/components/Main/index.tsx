@@ -36,10 +36,7 @@ export function Main() {
   return (
     <>
       <S.Main>
-        <Header
-          title="Meu Kaban"
-          image="https://github.com/rickyhideyukitakakura.png"
-        />
+        <Header image="https://github.com/rickyhideyukitakakura.png" />
 
         <Search iconFilter={<FilterListIcon />} iconSearch={<SearchIcon />} />
 

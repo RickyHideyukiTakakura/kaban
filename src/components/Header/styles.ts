@@ -29,6 +29,18 @@ export const Header = styled.div`
     }
   }
 
+  form {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+
+    input {
+      border: none;
+      border-radius: 0.8rem;
+      box-shadow: rgba(22, 22, 22, 0.1) 0rem 0.4rem 1.6rem;
+    }
+  }
+
   img {
     width: 6.4rem;
     height: 6.4rem;

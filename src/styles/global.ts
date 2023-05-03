@@ -59,6 +59,10 @@ export const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
 
+  input:focus {
+    outline: 1px solid var(--purple-300);
+  }
+
   #root {
     display: flex;
   }
